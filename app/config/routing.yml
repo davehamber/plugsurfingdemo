@@ -1,3 +1,7 @@
+plug_surfing_demo:
+    resource: "@PlugSurfingDemoBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

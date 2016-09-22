@@ -1,0 +1,3 @@
+plug_surfing_demo_homepage:
+    path:     /
+    defaults: { _controller: PlugSurfingDemoBundle:Default:index }

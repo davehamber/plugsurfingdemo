@@ -14,6 +14,12 @@ yum -y install php56w php56w-opcache
 yum -y install php56w-xml
 yum -y install php56w-pdo
 
+# Steps needed to install Xdebug
+yum -y install php56w-devel gcc gcc-c++ autoconf automake
+yum -y install php-pear
+pecl install Xdebug
+echo "zend_extension=xdebug.so" > /etc/php.d/xdebug.ini
+
 # Give php.ini a timezone to stop php configuration moans
 sed -i "s/;date.timezone =/date.timezone = Europe\/Berlin/g" /etc/php.ini
 
@@ -58,6 +64,9 @@ restorecon -v /vagrant/web
 # Allow the app/cache and app/logs to be writeable by both apache and the vagrant user
 setfacl -R -m u:apache:rwX -m u:vagrant:rwX /vagrant/app/cache /vagrant/app/logs
 setfacl -dR -m u:apache:rwX -m u:vagrant:rwX /vagrant/app/cache /vagrant/app/logs
+
+curl -L https://phar.phpunit.de/phpunit.phar > /usr/local/bin/phpunit.phar
+chmod +x /usr/local/bin/phpunit.phar
 
 # Add apache to boot and start
 systemctl enable httpd.service

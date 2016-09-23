@@ -1,1 +1,7 @@
-Hello World!
+{% extends '::base.html.twig' %}
+{% block title %}PlugSurfingDemo{% endblock %}
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.csvfile) }}
+    {{ form_end(form) }}
+{% endblock %}
